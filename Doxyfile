@@ -1,0 +1,5 @@
+PROJECT_NAME           = "Pipeline Flask"
+INPUT                  = .
+RECURSIVE              = YES
+GENERATE_HTML          = YES
+OUTPUT_DIRECTORY       = html
