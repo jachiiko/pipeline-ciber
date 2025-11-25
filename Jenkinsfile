@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     stages {
+        
         stage('Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/jachiiko/pipeline-ciber.git'
@@ -10,26 +11,32 @@ pipeline {
 
         stage('Install dependencies') {
             steps {
-                sh 'pip install -r requirements.txt'
+                bat '''
+                    pip install -r requirements.txt
+                '''
             }
         }
 
         stage('Run tests') {
             steps {
-                sh 'pytest'
+                bat '''
+                    pytest
+                '''
             }
         }
 
         stage('Generate documentation') {
             steps {
-                sh 'doxygen Doxyfile'
+                bat '''
+                    doxygen Doxyfile
+                '''
             }
         }
     }
 
     post {
-        always {
-            archiveArtifacts artifacts: 'html/**', allowEmptyArchive: true
+        success {
+            archiveArtifacts artifacts: 'html/**', fingerprint: true
         }
     }
 }
