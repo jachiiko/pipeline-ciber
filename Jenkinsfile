@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/jachiiko/pipeline-ciber.git'
+                git branch: 'main', url: 'https://github.com/jachiiko/pipeline-ciber.git'
             }
         }
 
@@ -29,7 +29,7 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: 'html/**'
+            archiveArtifacts artifacts: 'html/**', fingerprint: true
         }
     }
 }
