@@ -2,11 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
-            steps {
-                git branch: 'main', url: 'https://github.com/jachiiko/pipeline-ciber.git'
-            }
-        }
 
         stage('Install dependencies') {
             steps {
@@ -33,3 +28,4 @@ pipeline {
         }
     }
 }
+
